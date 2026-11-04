@@ -1,0 +1,21 @@
+{
+    "name": "kohnevard/shop",
+    "description": "فروشگاه آنلاین تجهیزات کوهنوردی",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.0",
+        "ext-pdo": "*",
+        "ext-mbstring": "*",
+        "ext-gd": "*",
+        "ext-json": "*",
+        "phpoffice/phpspreadsheet": "^1.29"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "autoload": {
+        "files": []
+    }
+}

@@ -1,0 +1,113 @@
+kohnevard-shop/
+│
+├── config/
+│   ├── config.php              ← تنظیمات کلی (نام سایت، مسیرها، ثابت‌ها)
+│   ├── database.php            ← اتصال PDO به MySQL
+│   └── constants.php           ← ثابت‌های وضعیت سفارش، نقش‌ها و...
+│
+├── includes/
+│   ├── header.php              ← هدر مشترک (منو، لوگو)
+│   ├── footer.php              ← فوتر مشترک
+│   ├── auth.php                ← توابع لاگین/ثبت‌نام/چک ادمین/چک لاگین
+│   ├── csrf.php                ← تولید و اعتبارسنجی توکن CSRF
+│   ├── functions.php           ← توابع کمکی (اعتبارسنجی شماره، آپلود، پیامک و...)
+│   ├── flash.php               ← پیام‌های flash (موفق/خطا)
+│   └── cart.php                ← توابع سبد خرید (افزودن، حذف، محاسبه جمع)
+│
+├── assets/
+│   ├── css/
+│   │   ├── style.css           ← CSS اصلی سایت
+│   │   └── admin.css           ← CSS پنل ادمین
+│   ├── js/
+│   │   ├── main.js             ← اسکریپت‌های عمومی (اسلایدر، منو موبایل)
+│   │   └── cart.js             ← اسکریپت‌های سبد خرید (آجاکس اختیاری)
+│   └── images/
+│       ├── logo.png
+│       └── slider/             ← عکس‌های اسلایدر
+│
+├── uploads/
+│   ├── products/               ← عکس محصولات
+│   ├── receipts/               ← فیش‌های بانکی آپلود شده
+│   ├── contact/                ← عکس‌های فرم تماس با ما
+│   └── .htaccess               ← جلوگیری از اجرای PHP در این پوشه
+│
+├── admin/
+│   ├── includes/
+│   │   ├── admin_header.php    ← هدر پنل ادمین
+│   │   ├── admin_footer.php    ← فوتر پنل ادمین
+│   │   └── admin_auth.php      ← چک ادمین بودن در بالای هر فایل
+│   │
+├── admin/
+│   ├── index.php               ← داشبورد ادمین (آمار کلی)
+│   ├── login.php               ← لاگین ادمین
+│   ├── logout.php              ← خروج ادمین
+│   │
+├── admin/
+│   ├── products/
+│   │   ├── list.php            ← لیست محصولات
+│   │   ├── create.php          ← افزودن محصول
+│   │   ├── edit.php            ← ویرایش محصول
+│   │   └── delete.php          ← حذف محصول
+│   │
+├── admin/
+│   ├── categories/
+│   │   ├── list.php
+│   │   ├── create.php
+│   │   ├── edit.php
+│   │   └── delete.php
+│   │
+├── admin/
+│   ├── orders/
+│   │   ├── list.php            ← لیست سفارش‌ها
+│   │   ├── view.php            ← جزئیات سفارش + تغییر وضعیت + تایید فیش
+│   │   └── export_excel.php    ← خروجی xlsx با PhpSpreadsheet
+│   │
+├── admin/
+│   ├── comments/
+│   │   ├── list.php            ← لیست نظرات (در انتظار/تایید شده)
+│   │   ├── approve.php         ← تایید نظر
+│   │   └── delete.php          ← حذف نظر
+│   │
+├── admin/
+│   ├── messages/
+│   │   ├── list.php            ← پیام‌های تماس با ما
+│   │   └── view.php
+│   │
+├── admin/
+│   ├── slides/
+│   │   ├── list.php
+│   │   ├── create.php
+│   │   ├── edit.php
+│   │   └── delete.php
+│   │
+├── admin/
+│   └── settings/
+│       └── index.php           ← تنظیمات سایت (نام، لوگو، فوتر، تماس)
+│
+├── pages/
+│   ├── home.php                ← صفحه اصلی (اسلایدر + تخفیف + جدید)
+│   ├── shop.php                ← صفحه فروشگاه
+│   ├── product.php             ← صفحه تکی محصول (?id=)
+│   ├── about.php               ← درباره ما
+│   └── contact.php             ← ارتباط با ما
+│
+├── user/
+│   ├── login.php               ← ورود کاربر (شماره تماس + رمز)
+│   ├── register.php            ← ثبت‌نام کاربر
+│   ├── logout.php
+│   ├── dashboard.php           ← داشبورد کاربر
+│   ├── profile.php             ← ویرایش اطلاعات (آدرس، کد پستی و...)
+│   ├── cart.php                ← سبد خرید (فقط با پروفایل کامل)
+│   ├── checkout.php            ← ثبت نهایی سفارش
+│   ├── upload_receipt.php      ← آپلود فیش بانکی
+│   └── orders.php              ← سفارش‌های کاربر
+│
+├── vendor/                     ← Composer (PhpSpreadsheet اینجا نصب می‌شود)
+│
+├── database/
+│   └── schema.sql              ← کد SQL ساخت جداول + داده اولیه
+│
+├── .htaccess                   ← محافظت از config و uploads
+├── composer.json               ← برای نصب PhpSpreadsheet
+├── index.php                   ← نقطه ورود اصلی (route ساده)
+└── README.md                   ← راهنمای نصب و اجرا

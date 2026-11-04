@@ -1,0 +1,75 @@
+# ============================================
+# تنظیمات امنیتی و مسیرهای پروژه
+# ============================================
+
+# فعال‌سازی موتور Rewrite
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /kohnevard-shop/
+
+    # جلوگیری از دسترسی مستقیم به پوشه‌های حساس
+    RewriteRule ^config/ - [F,L]
+    RewriteRule ^includes/ - [F,L]
+    RewriteRule ^database/ - [F,L]
+    RewriteRule ^vendor/ - [F,L]
+    RewriteRule ^\.git/ - [F,L]
+
+    # جلوگیری از دسترسی به فایل‌های مخفی
+    RewriteRule ^\. - [F,L]
+</IfModule>
+
+# ----- جلوگیری از لیست شدن فایل‌ها -----
+Options -Indexes
+
+# ----- جلوگیری از دسترسی به فایل‌های حساس -----
+<FilesMatch "^(composer\.(json|lock)|README\.md|\.env|\.htaccess|\.gitignore)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# ----- مسدود کردن دسترسی به فایل‌های PHP حساس -----
+<FilesMatch "^(schema\.sql)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# ----- تنظیم هدرهای امنیتی -----
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    # اگر HTTPS داری، این خط را از کامنت خارج کن:
+    # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ----- کش فایل‌های استاتیک -----
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType font/woff2 "access plus 1 month"
+</IfModule>
+
+# ----- فشرده‌سازی Gzip -----
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE application/javascript application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ----- تغییر صفحه خطای پیش‌فرض -----
+ErrorDocument 403 /kohnevard-shop/index.php
+ErrorDocument 404 /kohnevard-shop/index.php
+
+# ----- تنظیم کدگذاری پیش‌فرض -----
+AddDefaultCharset UTF-8
+
+# ----- جلوگیری از اجرای PHP در پوشه‌های آپلود -----
+<IfModule mod_rewrite.c>
+    RewriteRule ^uploads/.*\.(php|php3|php4|php5|php7|php8|phtml|phar)$ - [F,L]
+</IfModule>
